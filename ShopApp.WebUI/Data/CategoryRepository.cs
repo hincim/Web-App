@@ -29,6 +29,12 @@ namespace ShopApp.WebUI.Data
                         CategoryId= 3,
                     Description = "Elektronik",
                     Name = "Elektronik",
+                },
+                    new Category()
+                {
+                        CategoryId= 4,
+                    Description = "Beyaz Eşya",
+                    Name = "Beyaz Eşya",
                 }
             };
         }

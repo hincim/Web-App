@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using ShopApp.WebUI.Data;
 using ShopApp.WebUI.Models;
 using ShopApp.WebUI.ViewModels;
@@ -64,11 +65,17 @@ namespace ShopApp.WebUI.Controllers
             return View(product);
         }
 
+
+        public IActionResult Create()
+        {
+            ViewBag.Categories = new SelectList(CategoryRepository.Categories,"CategoryId","Name");
+            return View();
+        }
+        [HttpPost]
         public IActionResult Create(Product product)
         {
-            ProductViewModel productViewModel = new ProductViewModel { };
-
-            return View(productViewModel);
+            ProductRepository.AddProduct(product);
+            return RedirectToAction("list");
         }
     }
 }
