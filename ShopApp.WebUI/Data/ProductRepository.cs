@@ -41,6 +41,23 @@ namespace ShopApp.WebUI.Data
             return _products.FirstOrDefault(p => p.ProductId == productid);
         }
 
-      
+        public static void EditProduct(Product product)
+        {
+            foreach (Product p in _products)
+            {
+                if (p.ProductId == product.ProductId)
+                {
+                    p.Name = product.Name;
+                    p.Price = product.Price;
+                    p.Description = product.Description;    
+                    p.ImageUrl = product.ImageUrl;
+                    p.isApproved = product.isApproved;
+                    p.CategoryId = product.CategoryId;
+
+                }
+            }
+        }
+
+
     }
 }
