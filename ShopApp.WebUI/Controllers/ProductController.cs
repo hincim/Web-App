@@ -69,14 +69,21 @@ namespace ShopApp.WebUI.Controllers
         public IActionResult Create()
         {
             ViewBag.Categories = new SelectList(CategoryRepository.Categories,"CategoryId","Name");
-            return View();
+            return View(new Product());
         }
 
         [HttpPost]
         public IActionResult Create(Product product)
         {
-            ProductRepository.AddProduct(product);
-            return RedirectToAction("list");
+            if (ModelState.IsValid)
+            {
+                ProductRepository.AddProduct(product);
+                return RedirectToAction("list");
+            }
+            ViewBag.Categories = new SelectList(CategoryRepository.Categories, "CategoryId", "Name");
+            return View(product);
+
+            
         }
 
         public IActionResult Edit(int id)
@@ -89,6 +96,12 @@ namespace ShopApp.WebUI.Controllers
         public IActionResult Edit(Product product)
         {
             ProductRepository.EditProduct(product);
+            return RedirectToAction("list");
+        }
+        [HttpPost]
+        public IActionResult Delete(int ProductId)
+        {
+            ProductRepository.DeleteProduct(ProductId);
             return RedirectToAction("list");
         }
     }
