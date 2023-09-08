@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "JtVKOVVtz8SbsFxFi2QKWIjea7RMn6REUfxU7R8ugy7yMNvrEw0iY6XBdTq6709+WiJHpmKu2s5qSpGU6HUluQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\hakan.DESKTOP-99I88G4\\OneDrive\\Masaüstü\\web_gelistirme\\.Net Core\\asp.net_core_mvc\\ShopApp\\ShopApp.Entity\\ShopApp.Entity.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\hakan.DESKTOP-99I88G4\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.32\\microsoft.netcore.app.host.win-x64.3.1.32.nupkg.sha512"
+  ],
+  "logs": []
+}
