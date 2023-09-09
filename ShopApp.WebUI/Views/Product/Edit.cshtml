@@ -1,5 +1,4 @@
-﻿@using ShopApp.WebUI.Models;
-@model Product;
+﻿@model Product;
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 
@@ -21,15 +20,16 @@
         <label for="ImageUrl">Image Url</label>
         <input asp-for="ImageUrl" value="@Model.ImageUrl" class="form-control"/>
     </div>
-    <div class="form-group">
+    @*<div class="form-group">
         <label for="CategoryId">Category Id</label>
         <select asp-for="CategoryId" asp-items="@ViewBag.Categories" class="form-control">
             <option selected disabled>Seçiniz</option>
 
             @* <option value="1">Telefon</option>
             <option value="2">Bilgisayar</option>
-            <option value="3">Elektronik</option>*@
+            <option value="3">Elektronik</option>//
         </select>
-    </div>
+    </div>*@
+
    <button type="submit" class="btn btn-primary mt-2">Submit</button>
 </form>
