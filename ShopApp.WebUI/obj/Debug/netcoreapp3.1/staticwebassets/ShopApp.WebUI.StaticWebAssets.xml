@@ -1,4 +1,5 @@
 ﻿<StaticWebAssets Version="1.0">
+  <ContentRoot BasePath="_content/ShopApp.Business" Path="C:\Users\hakan.DESKTOP-99I88G4\OneDrive\Masaüstü\web_gelistirme\.Net Core\asp.net_core_mvc\ShopApp\ShopApp.Business\wwwroot\" />
   <ContentRoot BasePath="_content/ShopApp.Data" Path="C:\Users\hakan.DESKTOP-99I88G4\OneDrive\Masaüstü\web_gelistirme\.Net Core\asp.net_core_mvc\ShopApp\ShopApp.Data\wwwroot\" />
   <ContentRoot BasePath="_content/ShopApp.Entity" Path="C:\Users\hakan.DESKTOP-99I88G4\OneDrive\Masaüstü\web_gelistirme\.Net Core\asp.net_core_mvc\ShopApp\ShopApp.Entity\wwwroot\" />
 </StaticWebAssets>

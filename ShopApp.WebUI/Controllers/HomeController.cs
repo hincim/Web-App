@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
+using ShopApp.Business.Abstract;
 using ShopApp.Data.Abstract;
 using ShopApp.WebUI.ViewModels;
 using System;
@@ -9,16 +10,16 @@ namespace ShopApp.WebUI.Controllers
 {
     public class HomeController : Controller
     {
-        private IProductRepository _productRepository;
-        public HomeController(IProductRepository productRepository)
+        private IProductService _productService;
+        public HomeController(IProductService productService)
         {
-            this._productRepository = productRepository;
+            this._productService = productService;
         }
         public IActionResult Index()
         {
           
             ProductViewModel productViewModel = new ProductViewModel();
-            productViewModel.Products = _productRepository.GetAll();
+            productViewModel.Products = _productService.GetAll();
 
             return View(productViewModel);
         }
