@@ -18,7 +18,7 @@ namespace ShopApp.WebUI.Controllers
         public IActionResult Index()
         {
           
-            ProductViewModel productViewModel = new ProductViewModel();
+            ProductListViewModel productViewModel = new ProductListViewModel();
             productViewModel.Products = _productService.GetAll();
 
             return View(productViewModel);

@@ -32,7 +32,13 @@ namespace ShopApp.Business.Concrete
 
         public Product GetById(int id)
         {
-            throw new System.NotImplementedException();
+            return _productRepository.GetById(id);
+
+        }
+
+        public Product GetProductDetails(int id)
+        {
+            return _productRepository.GetProductDetails(id);
         }
 
         public void Update(Product entity)
