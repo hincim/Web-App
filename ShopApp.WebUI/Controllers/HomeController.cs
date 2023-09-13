@@ -19,7 +19,7 @@ namespace ShopApp.WebUI.Controllers
         {
           
             ProductListViewModel productViewModel = new ProductListViewModel();
-            productViewModel.Products = _productService.GetAll();
+            productViewModel.Products = _productService.GetHomePageProducts();
 
             return View(productViewModel);
         }

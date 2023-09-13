@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using ShopApp.Business.Abstract;
 using ShopApp.Entity;
 using ShopApp.WebUI.Models;
@@ -14,23 +15,30 @@ namespace ShopApp.WebUI.Controllers
         {
             this._productService = productService;
         }
-        public IActionResult List()
+        // localhost/products/telefon?page=1
+        public IActionResult List(string category, int page = 1)
         {
-
+            const int pageSize = 3;
             ProductListViewModel productViewModel = new ProductListViewModel();
-            productViewModel.Products = _productService.GetAll();
-
+            productViewModel.Products = _productService.GetProductsByCategory(category, page, pageSize);
+            productViewModel.PageInfo = new PageInfo()
+            {
+                TotalItems = _productService.GetCountByCategory(category),
+                CurrentPage = page,
+                ItemsPerPage = pageSize,
+                CurrentCategory = category
+            };
             return View(productViewModel);
         }
 
-        public IActionResult Details(int? id)
+        public IActionResult Details(string productname)
         {
-            if (id == null)
+            if (productname == null)
             {
                 return NotFound();
             }
 
-            Product product = _productService.GetProductDetails((int)id);
+            Product product = _productService.GetProductDetails(productname);
             if (product == null)
             {
                 return NotFound();
@@ -40,6 +48,13 @@ namespace ShopApp.WebUI.Controllers
                 Product = product,
                 Categories = product.ProductCategories.Select(c => c.Category).ToList()
             }); ;
+        }
+        public IActionResult Search(string q)
+        {
+            ProductListViewModel productViewModel = new ProductListViewModel();
+            productViewModel.Products = _productService.GetSearchResult(q);
+          
+            return View(productViewModel);
         }
     }
 }

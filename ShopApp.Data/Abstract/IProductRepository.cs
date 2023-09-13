@@ -5,7 +5,11 @@ namespace ShopApp.Data.Abstract
 {
     public interface IProductRepository : IRepository<Product>
     {
-        Product GetProductDetails(int id);
-        List<Product> GetPopularProducts();
+        Product GetProductDetails(string productname);
+        List<Product> GetProductsByCategory(string name, int page, int pageSize);
+        List<Product> GetSearchResult(string searchString);
+        List<Product> GetHomePageProducts();
+        int GetCountByCategory(string category);
+
     }
 }

@@ -27,16 +27,21 @@ namespace ShopApp.Data.Concrete.EfCore
             context.SaveChanges();
         }
         private static Category[] Categories = {
-            new Category(){Name="Telefon"},
-            new Category(){Name="Bilgisayar"},
-            new Category(){Name="Elektronik"},
+            new Category(){Name="Telefon", Url="telefon"},
+            new Category(){Name="Bilgisayar", Url = "bilgisayar"},
+            new Category(){Name="Elektronik", Url = "elektronik"},
+            new Category(){Name="Beyaz Eşya", Url = "beyaz-esya"},
         };
 
         private static Product[] Products = {
-            new Product(){Name="Samsung S5",Price=2000,ImageUrl="samsung.png",Description="iyi telefon",isApproved=false,},
-            new Product(){Name="Samsung S6",Price=3000,ImageUrl="samsung2.png",Description="iyi telefon",isApproved=true,},
-            new Product(){Name="Samsung S7",Price=4000,ImageUrl="samsung.png",Description="iyi telefon",isApproved=false,},
-            new Product(){Name="Samsung S8",Price=5000,ImageUrl="samsung2.png",Description="iyi telefon",isApproved=true,},
+            new Product(){Name="Samsung S5",Price=2000,ImageUrl="samsung.png",Description="iyi telefon",IsApproved=false,
+            Url="samsung-s5"},
+            new Product(){Name="Samsung S6",Price=3000,ImageUrl="samsung2.png",Description="iyi telefon",IsApproved=true,
+            Url="samsung-s6"},
+            new Product(){Name="Samsung S7",Price=4000,ImageUrl="samsung.png",Description="iyi telefon",IsApproved=false,
+            Url="samsung-s7"},
+            new Product(){Name="Samsung S8",Price=5000,ImageUrl="samsung2.png",Description="iyi telefon",IsApproved=true,
+            Url="samsung-s8"},
         };
 
         private static ProductCategory[] ProductCategories = {

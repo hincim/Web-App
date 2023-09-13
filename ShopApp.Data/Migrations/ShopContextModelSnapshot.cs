@@ -25,6 +25,9 @@ namespace ShopApp.Data.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Url")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("CategoryId");
 
                     b.ToTable("Categories");
@@ -42,14 +45,20 @@ namespace ShopApp.Data.Migrations
                     b.Property<string>("ImageUrl")
                         .HasColumnType("TEXT");
 
+                    b.Property<bool>("IsApproved")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsHome")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
                     b.Property<double?>("Price")
                         .HasColumnType("REAL");
 
-                    b.Property<bool>("isApproved")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Url")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("ProductId");
 

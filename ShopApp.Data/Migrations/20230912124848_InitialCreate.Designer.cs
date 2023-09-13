@@ -9,7 +9,7 @@ using ShopApp.Data.Concreate.EfCore;
 namespace ShopApp.Data.Migrations
 {
     [DbContext(typeof(ShopContext))]
-    [Migration("20230909083609_InitialCreate")]
+    [Migration("20230912124848_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,6 +25,9 @@ namespace ShopApp.Data.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Url")
                         .HasColumnType("TEXT");
 
                     b.HasKey("CategoryId");
@@ -49,6 +52,9 @@ namespace ShopApp.Data.Migrations
 
                     b.Property<double?>("Price")
                         .HasColumnType("REAL");
+
+                    b.Property<string>("Url")
+                        .HasColumnType("TEXT");
 
                     b.Property<bool>("isApproved")
                         .HasColumnType("INTEGER");
