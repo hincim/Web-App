@@ -15,12 +15,17 @@ namespace ShopApp.Business.Concrete
         }
         public void Create(Category entity)
         {
-            throw new System.NotImplementedException();
+            _categoryRepository.Create(entity);
         }
 
         public void Delete(Category entity)
         {
-            throw new System.NotImplementedException();
+            _categoryRepository.Delete(entity);
+        }
+
+        public void DeleteFromCategory(int productId, int categoryId)
+        {
+            _categoryRepository.DeleteFromCategory(productId, categoryId);
         }
 
         public List<Category> GetAll()
@@ -31,12 +36,17 @@ namespace ShopApp.Business.Concrete
 
         public Category GetById(int id)
         {
-            throw new System.NotImplementedException();
+            return _categoryRepository.GetById(id);
+        }
+
+        public Category GetByIdWithProducts(int categoryId)
+        {
+            return _categoryRepository.GetByIdWithProducts(categoryId);
         }
 
         public void Update(Category entity)
         {
-            throw new System.NotImplementedException();
+            _categoryRepository.Update(entity);
         }
     }
 }

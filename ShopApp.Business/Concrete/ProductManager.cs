@@ -36,6 +36,11 @@ namespace ShopApp.Business.Concrete
 
         }
 
+        public Product GetByIdWithCategories(int id)
+        {
+            return _productRepository.GetByIdWithCategories(id);
+        }
+
         public int GetCountByCategory(string category)
         {
             return _productRepository.GetCountByCategory(category);
@@ -63,7 +68,12 @@ namespace ShopApp.Business.Concrete
 
         public void Update(Product entity)
         {
-            throw new System.NotImplementedException();
+            _productRepository.Update(entity);
+        }
+
+        public void Update(Product entity, int[] categoryIds)
+        {
+            _productRepository.Update(entity, categoryIds);
         }
     }
 }

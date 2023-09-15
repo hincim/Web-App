@@ -33,8 +33,15 @@ using ShopApp.WebUI.Models;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 5 "C:\Users\hakan.DESKTOP-99I88G4\OneDrive\Masaüstü\web_gelistirme\.Net Core\asp.net_core_mvc\ShopApp\ShopApp.WebUI\Views\_ViewImports.cshtml"
+using Newtonsoft.Json;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"bc9b9b30d0408d5c267adfb0f8bcc5f4d65997c5", @"/Views/Shared/Components/Categories/Default.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"83b4b838deaa982c39248c288b39b740dc4aa0d3", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"5f563fa2d250aa1521441151ec5ead88960b2cc4", @"/Views/_ViewImports.cshtml")]
     #nullable restore
     public class Views_Shared_Components_Categories_Default : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<List<Category>>
     #nullable disable
@@ -75,7 +82,7 @@ using ShopApp.WebUI.Models;
 #line hidden
 #nullable disable
             WriteLiteral("         ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "bc9b9b30d0408d5c267adfb0f8bcc5f4d65997c54741", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "bc9b9b30d0408d5c267adfb0f8bcc5f4d65997c54984", async() => {
 #nullable restore
 #line 12 "C:\Users\hakan.DESKTOP-99I88G4\OneDrive\Masaüstü\web_gelistirme\.Net Core\asp.net_core_mvc\ShopApp\ShopApp.WebUI\Views\Shared\Components\Categories\Default.cshtml"
                                                                Write(category.Name);
