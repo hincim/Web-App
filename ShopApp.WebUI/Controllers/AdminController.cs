@@ -49,18 +49,16 @@ namespace ShopApp.WebUI.Controllers
                     Url = model.Url,
 
                 };
-                _productService.Create(entity);
 
-                var msg = new AlertMessage()
+                if (_productService.Create(entity))
                 {
-                    Message = $"{entity.Name} isimli ürün eklendi.",
-                    AlertType = "success"
-                };
 
-                TempData["message"] = JsonConvert.SerializeObject(msg);
+                    CreateMessage($"{entity} isimli ürün eklendi","success");
 
-                return RedirectToAction("productlist");
-
+                    return RedirectToAction("productlist");
+                }
+                CreateMessage(_productService.ErrorMessage, "danger");
+                return View(model);
             }
             return View(model);
 
@@ -115,6 +113,8 @@ namespace ShopApp.WebUI.Controllers
                 ImageUrl = entity.ImageUrl,
                 Price = entity.Price,
                 Url = entity.Url,
+                IsHome = entity.IsHome,
+                IsApproved = entity.IsApproved,
             };
 
             ViewBag.Categories = _categoryService.GetAll();
@@ -136,17 +136,16 @@ namespace ShopApp.WebUI.Controllers
                 entity.ImageUrl = model.ImageUrl;
                 entity.Price = model.Price;
                 entity.Url = model.Url;
+                entity.IsApproved = model.IsApproved;
+                entity.IsHome = model.IsHome;
 
-                _productService.Update(entity, categoryIds);
-                var msg = new AlertMessage()
+                if (_productService.Update(entity,categoryIds))
                 {
-                    Message = $"{entity.Name} isimli ürün güncellendi.",
-                    AlertType = "warning"
-                };
+                    CreateMessage($"{entity.Name} isimli ürün güncellendi","success");
+                    return RedirectToAction("ProductList");
+                }
+                CreateMessage(_productService.ErrorMessage, "danger");
 
-                TempData["message"] = JsonConvert.SerializeObject(msg);
-
-                return RedirectToAction("ProductList");
             }
             ViewBag.Categories = _categoryService.GetAll();
 
@@ -243,6 +242,17 @@ namespace ShopApp.WebUI.Controllers
         {
             _categoryService.DeleteFromCategory(productId,categoryId);
             return Redirect("/admin/categories/"+categoryId);
+        }
+
+        private void CreateMessage(string message, string alertType)
+        {
+            var msg = new AlertMessage()
+            {
+                Message = message,
+                AlertType = alertType
+            };
+
+            TempData["message"] = JsonConvert.SerializeObject(msg);
         }
     }
 }

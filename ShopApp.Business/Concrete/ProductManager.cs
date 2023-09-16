@@ -14,10 +14,16 @@ namespace ShopApp.Business.Concrete
         {
             _productRepository = productRepository;
         }
-        public void Create(Product entity)
+
+        public bool Create(Product entity)
         {
             // apply business rules
-            _productRepository.Create(entity);
+            if (Validation(entity))
+            {
+                _productRepository.Create(entity);
+                return true;
+            }
+            return false;
         }
 
         public void Delete(Product entity)
@@ -71,9 +77,44 @@ namespace ShopApp.Business.Concrete
             _productRepository.Update(entity);
         }
 
-        public void Update(Product entity, int[] categoryIds)
+        public bool Update(Product entity, int[] categoryIds)
         {
-            _productRepository.Update(entity, categoryIds);
+            if (Validation(entity))
+            {
+                if (categoryIds.Length == 0)
+                {
+                    ErrorMessage += "Ürün için en az bir kategori seçmelisiniz\n";
+                    return false;
+                }
+                _productRepository.Update(entity, categoryIds);
+                return true;
+            }
+            return false;
         }
+
+        public bool Validation(Product entity)
+        {
+            var isValid = true;
+
+            if (string.IsNullOrEmpty(entity.Name))
+            {
+                ErrorMessage += "ürün ismi girmelisiniz\n";
+                isValid = false;
+            }
+            if (entity.Price < 0 )
+            {
+                ErrorMessage += "ürün fiyatı negatif olamaz\n";
+                isValid = false;
+            }
+            if (entity.Price == null)
+            {
+                ErrorMessage += "ürün fiyatı boş olamaz\n";
+                isValid = false;
+            }
+
+            return isValid;
+        }
+        public string ErrorMessage { get; set; }
+
     }
 }
