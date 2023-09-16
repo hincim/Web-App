@@ -1,10 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using ShopApp.Business.Abstract;
 using ShopApp.Entity;
 using ShopApp.WebUI.Models;
 using ShopApp.WebUI.ViewModels;
+using System;
+using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace ShopApp.WebUI.Controllers
 {
@@ -122,7 +126,7 @@ namespace ShopApp.WebUI.Controllers
             return View(model);
         }
         [HttpPost]
-        public IActionResult ProductEdit(ProductModel model, int[] categoryIds)
+        public async Task<IActionResult> ProductEdit(ProductModel model, int[] categoryIds, IFormFile file)
         {
             if (ModelState.IsValid)
             {
@@ -133,11 +137,25 @@ namespace ShopApp.WebUI.Controllers
                 }
                 entity.Name = model.Name;
                 entity.Description = model.Description;
-                entity.ImageUrl = model.ImageUrl;
                 entity.Price = model.Price;
                 entity.Url = model.Url;
                 entity.IsApproved = model.IsApproved;
                 entity.IsHome = model.IsHome;
+
+                if (file != null)
+                {
+                    var extension = Path.GetExtension(file.FileName);
+                    var randomName = string.Format($"{Guid.NewGuid()}{extension}");
+
+                    entity.ImageUrl = randomName;
+
+                    var path = Path.Combine(Directory.GetCurrentDirectory(),"wwwroot\\img",randomName);
+
+                    using (var stream = new FileStream(path,FileMode.Create))
+                    {
+                        await stream.CopyToAsync(stream);
+                    }
+                }
 
                 if (_productService.Update(entity,categoryIds))
                 {

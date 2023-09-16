@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "ZbB593Zvw5YD9J5sW6OEWPqdD0v3FfG4MOVnQ/WUGhfvJryoPtIejNj9ZhVxAk2mkmeiAYhqwlxkLLmcB1UzQg==",
+  "dgSpecHash": "x1mmlKc8Ya4Y1dYqpFMeXDdqPror7QOs+ofGq8tTXUMW5wYqVd3t7fkv+wunlEsRtYFW28YU1HBAEjwsilYy9w==",
   "success": true,
   "projectFilePath": "C:\\Users\\hakan.DESKTOP-99I88G4\\OneDrive\\Masaüstü\\web_gelistirme\\.Net Core\\asp.net_core_mvc\\ShopApp\\ShopApp.WebUI\\ShopApp.WebUI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hakan.DESKTOP-99I88G4\\.nuget\\packages\\bootstrap\\5.3.1\\bootstrap.5.3.1.nupkg.sha512",
+    "C:\\Users\\hakan.DESKTOP-99I88G4\\.nuget\\packages\\ckeditor\\3.6.4\\ckeditor.3.6.4.nupkg.sha512",
     "C:\\Users\\hakan.DESKTOP-99I88G4\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\hakan.DESKTOP-99I88G4\\.nuget\\packages\\microsoft.aspnetcore.razor\\2.2.0\\microsoft.aspnetcore.razor.2.2.0.nupkg.sha512",
     "C:\\Users\\hakan.DESKTOP-99I88G4\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\3.1.0\\microsoft.aspnetcore.razor.language.3.1.0.nupkg.sha512",
