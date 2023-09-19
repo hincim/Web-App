@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using ShopApp.Business.Abstract;
 using ShopApp.Entity;
+using ShopApp.WebUI.Extensions;
 using ShopApp.WebUI.Models;
 using ShopApp.WebUI.ViewModels;
 using System;
@@ -12,6 +14,7 @@ using System.Threading.Tasks;
 
 namespace ShopApp.WebUI.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         private IProductService _productService;
@@ -57,11 +60,23 @@ namespace ShopApp.WebUI.Controllers
                 if (_productService.Create(entity))
                 {
 
-                    CreateMessage($"{entity} isimli ürün eklendi","success");
+                    TempData.Put("message", new AlertMessage()
+                    {
+                        Title = "Ürün eklendi",
+                        AlertType = "success",
+                        Message = $"{entity} isimli ürün eklendi"
+                    });
+                    //CreateMessage($"{entity} isimli ürün eklendi","success");
 
                     return RedirectToAction("productlist");
                 }
-                CreateMessage(_productService.ErrorMessage, "danger");
+                TempData.Put("message", new AlertMessage()
+                {
+                    Title = "Hata",
+                    AlertType = "danger",
+                    Message = _productService.ErrorMessage
+                });
+                //CreateMessage(_productService.ErrorMessage, "danger");
                 return View(model);
             }
             return View(model);
@@ -84,13 +99,20 @@ namespace ShopApp.WebUI.Controllers
                 };
                 _categoryService.Create(entity);
 
-                var msg = new AlertMessage()
+                TempData.Put("message", new AlertMessage()
                 {
-                    Message = $"{entity.Name} isimli kategori eklendi.",
-                    AlertType = "success"
-                };
+                    Title = "Kategori eklendi",
+                    AlertType = "success",
+                    Message = $"{entity.Name} isimli kategori eklendi."
+                });
 
-                TempData["message"] = JsonConvert.SerializeObject(msg);
+                //var msg = new AlertMessage()
+                //{
+                //    Message = $"{entity.Name} isimli kategori eklendi.",
+                //    AlertType = "success"
+                //};
+
+                //TempData["message"] = JsonConvert.SerializeObject(msg);
 
                 return RedirectToAction("categorylist");
             }
@@ -159,6 +181,7 @@ namespace ShopApp.WebUI.Controllers
 
                 if (_productService.Update(entity,categoryIds))
                 {
+
                     CreateMessage($"{entity.Name} isimli ürün güncellendi","success");
                     return RedirectToAction("ProductList");
                 }
