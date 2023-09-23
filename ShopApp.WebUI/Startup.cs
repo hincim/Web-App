@@ -92,7 +92,8 @@ namespace ShopApp.WebUI
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, 
+            IConfiguration configuration, UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
         {
             app.UseStaticFiles();
 
@@ -110,6 +111,8 @@ namespace ShopApp.WebUI
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            SeedIdentity.Seed(userManager, roleManager, configuration).Wait();
+
 
             app.UseAuthentication();
 
@@ -120,7 +123,36 @@ namespace ShopApp.WebUI
             // localhost:5000/category/list/3
             app.UseEndpoints(endpoints =>
             {
-                
+                endpoints.MapControllerRoute(
+                name: "adminuseredit",
+                pattern: "admin/user/{id?}",
+                defaults: new { controller = "Admin", action = "useredit" }
+                );
+
+                endpoints.MapControllerRoute(
+                name: "adminusers",
+                pattern: "admin/user/list",
+                defaults: new { controller = "Admin", action = "userlist" }
+                );
+
+                endpoints.MapControllerRoute(
+                name: "adminroles",
+                pattern: "admin/role/list",
+                defaults: new { controller = "Admin", action = "rolelist" }
+                );
+
+                endpoints.MapControllerRoute(
+                name: "adminrolecreate",
+                pattern: "admin/role/create",
+                defaults: new { controller = "Admin", action = "rolecreate" }
+                );
+
+                endpoints.MapControllerRoute(
+                name: "adminroleedit",
+                pattern: "admin/role/{id?}",
+                defaults: new { controller = "Admin", action = "roleedit" }
+                );
+
                 endpoints.MapControllerRoute(
                 name: "adminproducts",
                 pattern: "admin/products",

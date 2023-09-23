@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using ShopApp.WebUI.EmailServices;
@@ -6,10 +7,12 @@ using ShopApp.WebUI.Extensions;
 using ShopApp.WebUI.Identity;
 using ShopApp.WebUI.Models;
 using System;
+using System.Data;
 using System.Threading.Tasks;
 
 namespace ShopApp.WebUI.Controllers
 {
+    [AutoValidateAntiforgeryToken]
     public class AccountController : Controller
     {
         private UserManager<User> _userManager;
@@ -68,7 +71,7 @@ namespace ShopApp.WebUI.Controllers
 
             return View(model);
         }
-        [HttpGet]
+        [AllowAnonymous]
         public IActionResult Register()
         {
             return View();
@@ -160,7 +163,7 @@ namespace ShopApp.WebUI.Controllers
             //CreateMessage("Hesabınızı onaylayamadık", "warning");
             return View();
         }
-
+        [AllowAnonymous]
         public IActionResult ForgotPassword()
         {
             return View();
