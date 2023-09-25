@@ -223,3 +223,4 @@ C:\Users\hakan.DESKTOP-99I88G4\OneDrive\Masaüstü\web_gelistirme\.Net Core\asp.
 C:\Users\hakan.DESKTOP-99I88G4\OneDrive\Masaüstü\web_gelistirme\.Net Core\asp.net_core_mvc\ShopApp\ShopApp.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Admin\AccessDenied.cshtml.g.cs
 C:\Users\hakan.DESKTOP-99I88G4\OneDrive\Masaüstü\web_gelistirme\.Net Core\asp.net_core_mvc\ShopApp\ShopApp.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Admin\UserList.cshtml.g.cs
 C:\Users\hakan.DESKTOP-99I88G4\OneDrive\Masaüstü\web_gelistirme\.Net Core\asp.net_core_mvc\ShopApp\ShopApp.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Admin\UserEdit.cshtml.g.cs
+C:\Users\hakan.DESKTOP-99I88G4\OneDrive\Masaüstü\web_gelistirme\.Net Core\asp.net_core_mvc\ShopApp\ShopApp.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Cart\Index.cshtml.g.cs

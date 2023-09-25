@@ -16,6 +16,44 @@ namespace ShopApp.Data.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.3");
 
+            modelBuilder.Entity("ShopApp.Entity.Cart", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Cart");
+                });
+
+            modelBuilder.Entity("ShopApp.Entity.CartItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("CartId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CartId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("CartItems");
+                });
+
             modelBuilder.Entity("ShopApp.Entity.Category", b =>
                 {
                     b.Property<int>("CategoryId")
@@ -78,6 +116,21 @@ namespace ShopApp.Data.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("ProductCategory");
+                });
+
+            modelBuilder.Entity("ShopApp.Entity.CartItem", b =>
+                {
+                    b.HasOne("ShopApp.Entity.Cart", "Cart")
+                        .WithMany("CartItems")
+                        .HasForeignKey("CartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ShopApp.Entity.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("ShopApp.Entity.ProductCategory", b =>

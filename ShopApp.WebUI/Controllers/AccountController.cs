@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using ShopApp.Business.Abstract;
 using ShopApp.WebUI.EmailServices;
 using ShopApp.WebUI.Extensions;
 using ShopApp.WebUI.Identity;
@@ -18,12 +19,15 @@ namespace ShopApp.WebUI.Controllers
         private UserManager<User> _userManager;
         private SignInManager<User> _signInManager;
         private IEmailSender _emailSender;
+        private ICartService _cartService;
 
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, IEmailSender emailSender)
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, IEmailSender emailSender,
+            ICartService cartService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
+            _cartService = cartService;
         }
         public IActionResult Login(string ReturnUrl = null)
         {
@@ -95,6 +99,9 @@ namespace ShopApp.WebUI.Controllers
             var result = await _userManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {
+                // card object will be created
+                _cartService.InitializeCard(user.Id);
+
                 // generate token
                 var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                 var url = Url.Action("ConfirmEmail","Account", new
@@ -144,6 +151,7 @@ namespace ShopApp.WebUI.Controllers
                 var result = await _userManager.ConfirmEmailAsync(user, token);
                 if (result.Succeeded)
                 {
+
                     TempData.Put("message", new AlertMessage()
                     {
                         Title = "success",

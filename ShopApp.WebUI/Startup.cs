@@ -78,6 +78,8 @@ namespace ShopApp.WebUI
             services.AddScoped<IProductService, ProductManager>();
             services.AddScoped<ICategoryRepository, EfCoreCategoryRepository>();
             services.AddScoped<ICategoryService, CategoryManager>();
+            services.AddScoped<ICartRepository, EfCoreCartRepository>();
+            services.AddScoped<ICartService, CartManager>();
 
             services.AddScoped<IEmailSender, SmtpEmailSender>(i => new SmtpEmailSender(
                 _config["EmailSender:Host"],
@@ -123,6 +125,12 @@ namespace ShopApp.WebUI
             // localhost:5000/category/list/3
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                name: "cart",
+                pattern: "cart",
+                defaults: new { controller = "cart", action = "index" }
+                );
+
                 endpoints.MapControllerRoute(
                 name: "adminuseredit",
                 pattern: "admin/user/{id?}",
