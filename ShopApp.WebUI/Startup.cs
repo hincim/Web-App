@@ -37,7 +37,8 @@ namespace ShopApp.WebUI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationContext>(options => options.UseSqlite("Data Source=shopDb"));
+            services.AddDbContext<ApplicationContext>(options => options.UseSqlite(_config.GetConnectionString("SqliteConnection")));
+            services.AddDbContext<ShopContext>(options => options.UseSqlite(_config.GetConnectionString("SqliteConnection")));
             services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<ApplicationContext>().AddDefaultTokenProviders();
 
             services.Configure<IdentityOptions>(options =>
@@ -74,13 +75,14 @@ namespace ShopApp.WebUI
                 };
             });
 
-            services.AddScoped<IProductRepository, EfCoreProductRepository>();
+            //services.AddScoped<IProductRepository, EfCoreProductRepository>();
+            //services.AddScoped<ICategoryRepository, EfCoreCategoryRepository>();
+            //services.AddScoped<ICartRepository, EfCoreCartRepository>();
+            //services.AddScoped<IOrderRepository, EfCoreOrderRepository>();
+
             services.AddScoped<IProductService, ProductManager>();
-            services.AddScoped<ICategoryRepository, EfCoreCategoryRepository>();
             services.AddScoped<ICategoryService, CategoryManager>();
-            services.AddScoped<ICartRepository, EfCoreCartRepository>();
             services.AddScoped<ICartService, CartManager>();
-            services.AddScoped<IOrderRepository, EfCoreOrderRepository>();
             services.AddScoped<IOrderService,OrderManager>();
 
             services.AddScoped<IEmailSender, SmtpEmailSender>(i => new SmtpEmailSender(

@@ -7,22 +7,27 @@ using System.Linq;
 
 namespace ShopApp.Data.Concrete.EfCore
 {
-    public class EfCoreOrderRepository : EfCoreGenericRepository<Order, ShopContext>, IOrderRepository
+    public class EfCoreOrderRepository : EfCoreGenericRepository<Order>, IOrderRepository
     {
+        private ShopContext context;
+
+        public EfCoreOrderRepository(ShopContext _context): base(_context) 
+        {
+            context = _context;
+        }
+        private ShopContext ShopContext { get { return context as ShopContext; } }
+       
         public List<Order> GetOrders(string userId)
         {
-            using (var context = new ShopContext())
+            var orders = ShopContext.Orders
+                .Include(o => o.OrderItems)
+                .ThenInclude(o => o.Product)
+                .AsQueryable();
+            if (string.IsNullOrEmpty(userId))
             {
-                var orders = context.Orders
-                    .Include(o => o.OrderItems)
-                    .ThenInclude(o => o.Product)
-                    .AsQueryable();
-                if (string.IsNullOrEmpty(userId))
-                {
-                    orders = orders.Where(o => o.UserId == userId);
-                }
-                return orders.ToList();
+                orders = orders.Where(o => o.UserId == userId);
             }
+            return orders.ToList();
         }
     }
 }

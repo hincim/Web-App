@@ -6,11 +6,12 @@ namespace ShopApp.Business.Concrete
 {
     public class CartManager : ICartService
     {
-        private ICartRepository _cartRepository;
-
-        public CartManager(ICartRepository cartRepository)
+        //private ICartRepository _cartRepository;
+        private readonly IUnitOfWork _unitOfWork;
+        public CartManager(/*ICartRepository cartRepository,*/ IUnitOfWork unitOfWork)
         {
-            _cartRepository = cartRepository;
+            //_cartRepository = cartRepository;
+            _unitOfWork = unitOfWork;
         }
 
         public void AddToCart(string userId, int productId, int quantity)
@@ -37,13 +38,15 @@ namespace ShopApp.Business.Concrete
                     cart.CartItems[index].Quantity += quantity;
                 }
 
-                _cartRepository.Update(cart);
+                //_cartRepository.Update(cart);
+                _unitOfWork.Carts.Update(cart);
             }
         }
 
         public void ClearCart(int cartId)
         {
-            _cartRepository.ClearCart(cartId);
+            //_cartRepository.ClearCart(cartId);
+            _unitOfWork.Carts.ClearCart(cartId);
         }
 
         public void DeleteFromCart(string userId, int productId)
@@ -51,21 +54,27 @@ namespace ShopApp.Business.Concrete
             var cart = GetCartByUserId(userId);
             if(cart != null)
             {
-                _cartRepository.DeleteFromCart(cart.Id,productId);
+                //_cartRepository.DeleteFromCart(cart.Id,productId);
+                _unitOfWork.Carts.DeleteFromCart(cart.Id, cart.Id);
             }
         }
 
         public Cart GetCartByUserId(string userId)
         {
-            return _cartRepository.GetByUserId(userId);
+            //return _cartRepository.GetByUserId(userId);
+            return _unitOfWork.Carts.GetByUserId(userId);
         }
 
         public void InitializeCard(string userId)
         {
-            _cartRepository.Create(new Cart()
+            _unitOfWork.Carts.Create(new Cart()
             {
-                UserId = userId,
+                UserId = userId
             });
+            //_cartRepository.Create(new Cart()
+            //{
+            //    UserId = userId,
+            //});
         }
     }
 }
