@@ -37,8 +37,12 @@ namespace ShopApp.WebUI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationContext>(options => options.UseSqlite(_config.GetConnectionString("SqliteConnection")));
-            services.AddDbContext<ShopContext>(options => options.UseSqlite(_config.GetConnectionString("SqliteConnection")));
+
+            services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(_config.GetConnectionString("MsSqlConnection")));
+            services.AddDbContext<ShopContext>(options => options.UseSqlServer(_config.GetConnectionString("MsSqlConnection")));
+
+            //services.AddDbContext<ApplicationContext>(options => options.UseSqlite(_config.GetConnectionString("SqliteConnection")));
+            //services.AddDbContext<ShopContext>(options => options.UseSqlite(_config.GetConnectionString("SqliteConnection")));
             services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<ApplicationContext>().AddDefaultTokenProviders();
 
             services.Configure<IdentityOptions>(options =>
@@ -79,6 +83,7 @@ namespace ShopApp.WebUI
             //services.AddScoped<ICategoryRepository, EfCoreCategoryRepository>();
             //services.AddScoped<ICartRepository, EfCoreCartRepository>();
             //services.AddScoped<IOrderRepository, EfCoreOrderRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddScoped<IProductService, ProductManager>();
             services.AddScoped<ICategoryService, CategoryManager>();
@@ -99,7 +104,8 @@ namespace ShopApp.WebUI
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, 
-            IConfiguration configuration, UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
+            IConfiguration configuration, UserManager<User> userManager, RoleManager<IdentityRole> roleManager,
+            ICartService cartService)
         {
             app.UseStaticFiles();
 
@@ -107,7 +113,7 @@ namespace ShopApp.WebUI
 
             if (env.IsDevelopment())
             {
-                SeedDatabase.Seed();
+                //SeedDatabase.Seed();
                 app.UseDeveloperExceptionPage();
 
             }
@@ -117,7 +123,7 @@ namespace ShopApp.WebUI
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            SeedIdentity.Seed(userManager, roleManager, configuration).Wait();
+            SeedIdentity.Seed(cartService, userManager, roleManager, configuration).Wait();
 
 
             app.UseAuthentication();

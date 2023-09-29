@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ShopApp.Data.Configurations;
 using ShopApp.Entity;
 
 namespace ShopApp.Data.Concreate.EfCore
@@ -21,8 +22,13 @@ namespace ShopApp.Data.Concreate.EfCore
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ProductCategory>()
-                .HasKey(t => new {t.ProductId, t.CategoryId });
+            modelBuilder.ApplyConfiguration(new ProductConfiguration());
+            modelBuilder.ApplyConfiguration(new CategoryConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductCategoryConfiguration());
+
+            //modelBuilder.Entity<ProductCategory>()
+            //    .HasKey(t => new {t.ProductId, t.CategoryId });
+            modelBuilder.Seed();
         }
     }
 }

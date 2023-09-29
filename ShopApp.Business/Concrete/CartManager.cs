@@ -40,6 +40,7 @@ namespace ShopApp.Business.Concrete
 
                 //_cartRepository.Update(cart);
                 _unitOfWork.Carts.Update(cart);
+                _unitOfWork.Save();
             }
         }
 
@@ -71,6 +72,7 @@ namespace ShopApp.Business.Concrete
             {
                 UserId = userId
             });
+            _unitOfWork.Save();
             //_cartRepository.Create(new Cart()
             //{
             //    UserId = userId,

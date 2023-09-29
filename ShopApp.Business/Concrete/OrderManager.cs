@@ -7,19 +7,25 @@ namespace ShopApp.Business.Concrete
 {
     public class OrderManager : IOrderService
     {
-        private IOrderRepository _orderRepository;
-        public OrderManager(IOrderRepository orderRepository)
+        //private IOrderRepository _orderRepository;
+        private readonly IUnitOfWork _unitOfWork;
+        public OrderManager(/*IOrderRepository orderRepository, */IUnitOfWork unitOfWork)
         {
-            _orderRepository = orderRepository;
+            //_orderRepository = orderRepository;
+            _unitOfWork = unitOfWork;
+
         }
         public void Create(Order entity)
         {
-            _orderRepository.Create(entity);
+            //_orderRepository.Create(entity);
+            _unitOfWork.Order.Create(entity);
+            _unitOfWork.Save();
         }
 
         public List<Order> GetOrders(string userId)
         {
-            return _orderRepository.GetOrders(userId);
+            //return _orderRepository.GetOrders(userId);
+            return _unitOfWork.Order.GetOrders(userId);
         }
     }
 }

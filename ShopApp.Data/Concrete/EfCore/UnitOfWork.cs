@@ -16,9 +16,10 @@ namespace ShopApp.Data.Concrete.EfCore
         private EfCoreProductRepository _productRepository;
 
         public ICartRepository Carts => _cartRepository = _cartRepository ?? new EfCoreCartRepository(_context);
-        public ICategoryRepository Category => _categoryRepository = _categoryRepository ?? new EfCoreCategoryRepository(_context);
+        public ICategoryRepository Categories => _categoryRepository = _categoryRepository ?? new EfCoreCategoryRepository(_context);
         public IOrderRepository Order => _orderRepository = _orderRepository ?? new EfCoreOrderRepository(_context);
         public IProductRepository Products => _productRepository = _productRepository ?? new EfCoreProductRepository(_context);
+
 
         public void Dispose()
         {
