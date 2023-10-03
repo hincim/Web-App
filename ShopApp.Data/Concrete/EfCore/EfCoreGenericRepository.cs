@@ -2,6 +2,7 @@
 using ShopApp.Data.Abstract;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace ShopApp.Data.Concreate.EfCore
 {
@@ -18,19 +19,24 @@ namespace ShopApp.Data.Concreate.EfCore
             dbContext.Set<TEntity>().Add(entity);
         }
 
+        public async Task CreateAsync(TEntity entity)
+        {
+            await dbContext.Set<TEntity>().AddAsync(entity);
+        }
+
         public void Delete(TEntity entity)
         {
             dbContext.Set<TEntity>().Remove(entity);
         }
 
-        public List<TEntity> GetAll()
+        public async Task<List<TEntity>> GetAll()
         {
-            return dbContext.Set<TEntity>().ToList();
+            return await dbContext.Set<TEntity>().ToListAsync();
         }
 
-        public TEntity GetById(int id)
+        public async Task<TEntity> GetById(int id)
         {
-           return dbContext.Set<TEntity>().Find(id);
+           return await dbContext.Set<TEntity>().FindAsync(id);
         }
 
         public virtual void Update(TEntity entity)

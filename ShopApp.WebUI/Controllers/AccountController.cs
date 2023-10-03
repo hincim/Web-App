@@ -8,7 +8,6 @@ using ShopApp.WebUI.Extensions;
 using ShopApp.WebUI.Identity;
 using ShopApp.WebUI.Models;
 using System;
-using System.Data;
 using System.Threading.Tasks;
 
 namespace ShopApp.WebUI.Controllers

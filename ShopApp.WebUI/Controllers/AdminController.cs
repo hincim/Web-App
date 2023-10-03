@@ -178,18 +178,18 @@ namespace ShopApp.WebUI.Controllers
             }
             return View(model);
         }
-        public IActionResult ProductList()
+        public async Task<IActionResult> ProductList()
         {
             return View(new ProductListViewModel()
             {
-                Products = _productService.GetAll()
+                Products = await _productService.GetAll()
             });
         }
-        public IActionResult CategoryList()
+        public async Task<IActionResult> CategoryList()
         {
             return View(new CategoryListViewModel()
             {
-                Categories = _categoryService.GetAll()
+                Categories = await _categoryService.GetAll()
             });
         }
         public IActionResult ProductCreate() 
@@ -272,7 +272,7 @@ namespace ShopApp.WebUI.Controllers
             }
             return View();
         }
-        public IActionResult ProductEdit(int? id)
+        public async Task<IActionResult> ProductEdit(int? id)
         {
             if (id == null)
             {
@@ -297,7 +297,7 @@ namespace ShopApp.WebUI.Controllers
                 IsApproved = entity.IsApproved,
             };
 
-            ViewBag.Categories = _categoryService.GetAll();
+            ViewBag.Categories = await _categoryService.GetAll();
 
             return View(model);
         }
@@ -306,7 +306,7 @@ namespace ShopApp.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                var entity = _productService.GetById(model.ProductId);
+                var entity = await _productService.GetById(model.ProductId);
                 if (entity == null)
                 {
                     return NotFound();
@@ -342,7 +342,7 @@ namespace ShopApp.WebUI.Controllers
                 CreateMessage(_productService.ErrorMessage, "danger");
 
             }
-            ViewBag.Categories = _categoryService.GetAll();
+            ViewBag.Categories = await _categoryService.GetAll();
 
             return View(model);
         }
@@ -370,11 +370,11 @@ namespace ShopApp.WebUI.Controllers
             return View(model);
         }
         [HttpPost]
-        public IActionResult CategoryEdit(CategoryModel model)
+        public async Task<IActionResult> CategoryEdit(CategoryModel model)
         {
             if (ModelState.IsValid)
             {
-                var entity = _categoryService.GetById(model.CategoryId);
+                var entity = await _categoryService.GetById(model.CategoryId);
                 if (entity == null)
                 {
                     return NotFound();
@@ -396,9 +396,9 @@ namespace ShopApp.WebUI.Controllers
             return View(model);
         }
 
-        public IActionResult DeleteProduct(int productId)
+        public async Task<IActionResult> DeleteProduct(int productId)
         {
-            var entity = _productService.GetById(productId);
+            var entity = await _productService.GetById(productId);
 
             if (entity != null)
             {
@@ -414,9 +414,9 @@ namespace ShopApp.WebUI.Controllers
 
             return RedirectToAction("ProductList");
         }
-        public IActionResult DeleteCategory(int categoryId)
+        public async Task<IActionResult> DeleteCategory(int categoryId)
         {
-            var entity = _categoryService.GetById(categoryId);
+            var entity = await _categoryService.GetById(categoryId);
 
             if (entity != null)
             {

@@ -3,6 +3,7 @@ using ShopApp.Data.Abstract;
 using ShopApp.Data.Concreate.EfCore;
 using ShopApp.Entity;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ShopApp.Business.Concrete
 {
@@ -30,24 +31,33 @@ namespace ShopApp.Business.Concrete
             }
             return false;
         }
-
+        public async Task<Product> CreateAsync(Product entity)
+        {
+            await _unitOfWork.Products.CreateAsync(entity);
+            await _unitOfWork.SaveAsync();
+            return entity;
+        }
         public void Delete(Product entity)
         {
             //_productRepository.Delete(entity);
             _unitOfWork.Products.Delete(entity);
             _unitOfWork.Save();
         }
-
-        public List<Product> GetAll()
+        public async Task DeleteAsync(Product entity)
+        {
+            _unitOfWork.Products.Delete(entity);
+            await _unitOfWork.SaveAsync();
+        }
+        public async Task<List<Product>> GetAll()
         {
             //return _productRepository.GetAll();
-            return _unitOfWork.Products.GetAll();
+            return await _unitOfWork.Products.GetAll();
         }
 
-        public Product GetById(int id)
+        public async Task<Product> GetById(int id)
         {
             //return _productRepository.GetById(id);
-            return _unitOfWork.Products.GetById(id);
+            return await _unitOfWork.Products.GetById(id);
 
         }
 
@@ -93,7 +103,14 @@ namespace ShopApp.Business.Concrete
             _unitOfWork.Products.Update(entity);
             _unitOfWork.Save();
         }
+        public async Task UpdateAsync(Product entityToUpdate, Product entity)
+        {
+            entityToUpdate.Name = entity.Name;
+            entityToUpdate.Description = entity.Description;
+            entityToUpdate.Price = entity.Price;
 
+            await _unitOfWork.SaveAsync();
+        }
         public bool Update(Product entity, int[] categoryIds)
         {
             if (Validation(entity))

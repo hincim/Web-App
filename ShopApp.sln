@@ -9,7 +9,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShopApp.Entity", "ShopApp.E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShopApp.Data", "ShopApp.Data\ShopApp.Data.csproj", "{2B337739-6BCD-4B5F-8310-086DB990E0DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopApp.Business", "ShopApp.Business\ShopApp.Business.csproj", "{64FA5279-5D02-4D0A-8B58-FFBD70147E13}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShopApp.Business", "ShopApp.Business\ShopApp.Business.csproj", "{64FA5279-5D02-4D0A-8B58-FFBD70147E13}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppApp.WebApi", "ShoppApp.WebApi\ShoppApp.WebApi.csproj", "{F3612188-A40A-46B2-BB0D-78748AAAE8D2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ShoppApp.JsApp", "ShoppApp.JsApp", "{90DAC469-6A6E-48B4-B500-9E419C866C7F}"
+	ProjectSection(SolutionItems) = preProject
+		index.html = index.html
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +40,10 @@ Global
 		{64FA5279-5D02-4D0A-8B58-FFBD70147E13}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{64FA5279-5D02-4D0A-8B58-FFBD70147E13}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{64FA5279-5D02-4D0A-8B58-FFBD70147E13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3612188-A40A-46B2-BB0D-78748AAAE8D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3612188-A40A-46B2-BB0D-78748AAAE8D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3612188-A40A-46B2-BB0D-78748AAAE8D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3612188-A40A-46B2-BB0D-78748AAAE8D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
