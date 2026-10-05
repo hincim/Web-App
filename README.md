@@ -17,6 +17,80 @@ ShopApp, ASP.NET Core ile geliştirilmiş çok katmanlı bir e-ticaret uygulamas
 * Kullanıcı ve rol yönetimi
 * REST API üzerinden ürün işlemleri
 
+## Ekran Görüntüleri
+
+### Ana Sayfa
+
+![Ana Sayfa](docs/screenshots/home.png)
+
+### Mağaza
+
+<table>
+  <tr>
+    <td align="center"><b>Kategoriye Göre Ürünler</b></td>
+    <td align="center"><b>Ürün Detayı</b></td>
+  </tr>
+  <tr>
+    <td><img src="docs/screenshots/product-list.png" alt="Kategoriye göre ürün listesi"></td>
+    <td><img src="docs/screenshots/product-details.png" alt="Ürün detay sayfası"></td>
+  </tr>
+</table>
+
+### Üyelik
+
+<table>
+  <tr>
+    <td align="center"><b>Giriş</b></td>
+    <td align="center"><b>Kayıt</b></td>
+  </tr>
+  <tr>
+    <td><img src="docs/screenshots/login.png" alt="Giriş sayfası"></td>
+    <td><img src="docs/screenshots/register.png" alt="Kayıt sayfası"></td>
+  </tr>
+</table>
+
+### Sepet ve Sipariş
+
+<table>
+  <tr>
+    <td align="center"><b>Sepet</b></td>
+    <td align="center"><b>Ödeme</b></td>
+  </tr>
+  <tr>
+    <td><img src="docs/screenshots/cart.png" alt="Alışveriş sepeti"></td>
+    <td><img src="docs/screenshots/checkout.png" alt="Ödeme sayfası"></td>
+  </tr>
+</table>
+
+### Yönetici Paneli
+
+<table>
+  <tr>
+    <td align="center"><b>Ürün Yönetimi</b></td>
+    <td align="center"><b>Ürün Düzenleme</b></td>
+  </tr>
+  <tr>
+    <td><img src="docs/screenshots/admin-products.png" alt="Yönetici ürün listesi"></td>
+    <td><img src="docs/screenshots/admin-product-edit.png" alt="Ürün düzenleme formu"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Kategori Yönetimi</b></td>
+    <td align="center"><b>Kullanıcı Yönetimi</b></td>
+  </tr>
+  <tr>
+    <td><img src="docs/screenshots/admin-categories.png" alt="Yönetici kategori listesi"></td>
+    <td><img src="docs/screenshots/admin-users.png" alt="Yönetici kullanıcı listesi"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Rol Yönetimi</b></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><img src="docs/screenshots/admin-roles.png" alt="Yönetici rol listesi"></td>
+    <td></td>
+  </tr>
+</table>
+
 ## Kullanılan Teknolojiler
 
 * ASP.NET Core 3.1
