@@ -154,15 +154,15 @@ namespace ShopApp.WebUI
                 );
 
                 endpoints.MapControllerRoute(
-                name: "adminuseredit",
-                pattern: "admin/user/{id?}",
-                defaults: new { controller = "Admin", action = "useredit" }
-                );
-
-                endpoints.MapControllerRoute(
                 name: "adminusers",
                 pattern: "admin/user/list",
                 defaults: new { controller = "Admin", action = "userlist" }
+                );
+
+                endpoints.MapControllerRoute(
+                name: "adminuseredit",
+                pattern: "admin/user/{id?}",
+                defaults: new { controller = "Admin", action = "useredit" }
                 );
 
                 endpoints.MapControllerRoute(
@@ -238,16 +238,16 @@ namespace ShopApp.WebUI
                 //    );
 
                 endpoints.MapControllerRoute(
-                name: "productdetails",
-                pattern: "{productname}",
-                defaults: new { controller = "Shop", action = "details" }
+                name: "products",
+                pattern: "products/{category?}",
+                defaults: new { controller = "Shop", action = "list" }
                 );
 
 
                 endpoints.MapControllerRoute(
-                name: "products",
-                pattern: "products/{category?}",
-                defaults: new { controller = "Shop", action = "list" }
+                name: "productdetails",
+                pattern: "{productname}",
+                defaults: new { controller = "Shop", action = "details" }
                 );
 
 
